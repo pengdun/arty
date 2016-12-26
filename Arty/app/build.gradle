@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+
+def min_sdk = MIN_SDK
+def target_sdk = TARGET_SDK
+int version_code = APPLICATION_VERSION_CODE
+def version = APPLICATION_VERSION
+def package_name = APPLICATION_PACKAGENAME
+
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+    defaultConfig {
+        applicationId package_name
+        minSdkVersion min_sdk
+        targetSdkVersion target_sdk
+        versionCode version_code
+        versionName version
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+    
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:palette-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.android.support:cardview-v7:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha8'
+    
+    compile 'com.google.code.gson:gson:2.8.0'
+
+    compile 'com.jakewharton:butterknife:8.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    
+    compile 'com.kymjs.core:common:1.0.6'
+    compile 'com.kymjs.core:crash:1.0.1'
+    compile 'com.kymjs.rxvolley:rxvolley:1.1.4'
+    compile 'com.kymjs.rxvolley:bitmapcore:1.1.4'
+    compile 'com.kymjs.rxvolley:okhttp3:1.1.4'
+    
+}
