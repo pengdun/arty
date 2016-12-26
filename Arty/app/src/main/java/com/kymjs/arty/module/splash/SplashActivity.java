@@ -10,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
-import com.kymjs.arty.BaseActivity;
+import com.kymjs.arty.module.base.BaseActivity;
 import com.kymjs.arty.R;
 import com.kymjs.arty.api.Api;
 import com.kymjs.arty.db.SQLdm;
 import com.kymjs.arty.module.main.MainActivity;
-import com.kymjs.arty.utils.Constant;
+import com.kymjs.arty.Constant;
 import com.kymjs.arty.utils.GsonArrayCallback;
 import com.kymjs.common.Log;
 import com.kymjs.common.function.ThreadSwitch;
@@ -58,6 +58,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         showSplash();
+        splashSkip.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.skip_text));
 
         ThreadSwitch.singleton().io(new ThreadSwitch.IO() {
             @Override
@@ -90,17 +91,22 @@ public class SplashActivity extends BaseActivity {
     /**
      * 取消倒计时
      */
-    @OnClick(R.id.splash_skip)
     public void cancelTimer() {
+        if (mCountDownTimer != null) {
+            mCountDownTimer.cancel();
+        }
+    }
+
+    @OnClick(R.id.splash_skip)
+    public void clickSkip() {
         if (CLICK + CLICK_SPACE > System.currentTimeMillis()) {
             return;
         }
         CLICK = System.currentTimeMillis();
-        if (mCountDownTimer != null) {
-            mCountDownTimer.cancel();
-            jump();
-        }
+        cancelTimer();
+        jump();
     }
+
 
     /**
      * 启动倒计时

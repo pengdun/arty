@@ -3,10 +3,8 @@
           package="com.kymjs.arty">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.READ_PROFILE"/>
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
-
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    
     <application
         android:name=".AppContext"
         android:allowBackup="true"
@@ -18,10 +16,12 @@
             android:name="com.kymjs.arty.module.main.MainActivity"
             android:label="@string/app_name">
         </activity>
+        
         <activity
             android:name="com.kymjs.arty.module.login.LoginActivity"
             android:label="@string/title_activity_login">
         </activity>
+        
         <activity
             android:name="com.kymjs.arty.module.splash.SplashActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -31,6 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="appmanager"
+            android:value="com.hujiang.appmanager"/>
     </application>
 
 </manifest>
