@@ -1,14 +1,14 @@
-[![kymjs](http://www.kymjs.com/image/logo_s.png)](http://www.kymjs.com/works/)   
+[![kymjs](http://oe3r1xqa7.bkt.clouddn.com/arty/ic_launcher.png)](http://www.kymjs.com/works/)   
 
-*CoreModule* 自备自用的 module
+世界很美，而你正好有空。  
 
 
-## 关于
+## 关于我
 自我介绍：[kymjs张涛](http://www.kymjs.com/about)    
 
-* QQ 群[257053751](http://jq.qq.com/?_wv=1027&k=WoM2Aa)(开发者群1)，[201055521](http://jq.qq.com/?_wv=1027&k=MBVdpK)(开发者群2)    
-* 更多我的开源项目：[开源实验室](http://www.kymjs.com/works)    
-* blog：http://www.kymjs.com/    
+* QQ 群[257053751](http://jq.qq.com/?_wv=1027&k=WoM2Aa)(付费群1)，[201055521](http://jq.qq.com/?_wv=1027&k=MBVdpK)(付费群2)    
+* 更多我的开源项目：[开源实验室](http://www.kymjs.com/)    
+* blog：[http://www.kymjs.com/](http://www.kymjs.com/)    
 
 
 ##开源协议
