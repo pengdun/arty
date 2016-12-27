@@ -68,4 +68,9 @@ public class Poem {
     public boolean equals(Object obj) {
         return obj instanceof Poem && ((Poem) obj).getPoemId() == poemId;
     }
+
+    @Override
+    public int hashCode() {
+        return poemId;
+    }
 }

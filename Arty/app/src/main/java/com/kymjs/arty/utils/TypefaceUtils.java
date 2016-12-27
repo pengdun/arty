@@ -25,6 +25,17 @@ public class TypefaceUtils {
     }
 
     /**
+     * 设置字体,默认使用简体字
+     *
+     * @param views 待设置的view
+     */
+    public static void setTypeface(TextView... views) {
+        for (TextView view : views) {
+            setTypeface(view, true);
+        }
+    }
+
+    /**
      * 设置字体
      *
      * @param view           待设置的view

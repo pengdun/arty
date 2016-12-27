@@ -1,8 +1,11 @@
 package com.kymjs.arty.module.main.recommend;
 
+import android.widget.TextView;
+
 import com.kymjs.arty.R;
 import com.kymjs.arty.api.Api;
 import com.kymjs.arty.module.base.BasePullListFragment;
+import com.kymjs.arty.utils.TypefaceUtils;
 import com.kymjs.recycler.adapter.BasePullUpRecyclerAdapter;
 import com.kymjs.recycler.adapter.RecyclerHolder;
 import com.kymjs.rxvolley.RxVolley;
@@ -20,9 +23,16 @@ public class RecommendFragment extends BasePullListFragment<Poem> {
     protected BasePullUpRecyclerAdapter<Poem> getAdapter() {
         return new BasePullUpRecyclerAdapter<Poem>(
                 mRecyclerView, datas, R.layout.recommend_item) {
+            
             @Override
             public void convert(RecyclerHolder holder, Poem item, int position) {
-                holder.setText(R.id.hello, item.getDescription());
+                TextView title = holder.getView(R.id.recommend_item_poem_title);
+                TextView dynasty = holder.getView(R.id.recommend_item_poem_dynasty);
+                TextView description = holder.getView(R.id.recommend_item_poem_description);
+                title.setText(item.getName());
+                dynasty.setText(String.format("%s / %s", item.getDynasty(), item.getPoet()));
+                description.setText(item.getDescription());
+                TypefaceUtils.setTypeface(title, dynasty, description);
             }
         };
     }

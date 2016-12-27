@@ -23,6 +23,10 @@ import java.util.List;
 
 import butterknife.BindView;
 
+import static com.kymjs.recycler.adapter.BasePullUpRecyclerAdapter.STATE_INVISIBLE;
+import static com.kymjs.recycler.adapter.BasePullUpRecyclerAdapter.STATE_LOADING;
+import static com.kymjs.recycler.adapter.BasePullUpRecyclerAdapter.STATE_NO_MORE;
+
 /**
  * 自带下拉刷新的Fragment基类
  * <p>
@@ -46,53 +50,7 @@ public abstract class BasePullListFragment<T> extends BaseFragment implements
 
     protected abstract List<T> parserInAsync(byte[] t);
 
-    protected HttpCallback callBack = new HttpCallback() {
-        private List<T> tempDatas;
-
-        @Override
-        public void onSuccessInAsync(byte[] t) {
-            super.onSuccessInAsync(t);
-            try {
-                tempDatas = parserInAsync(t);
-            } catch (Exception e) {
-                tempDatas = null;
-            }
-        }
-
-        @Override
-        public void onSuccess(String t) {
-            super.onSuccess(t);
-            Log.d("===列表网络请求:" + t);
-            if (tempDatas == null || tempDatas.isEmpty() || adapter == null || adapter
-                    .getItemCount() < 1) {
-                mEmptyLayout.setErrorType(EmptyLayout.NODATA);
-            } else {
-                mEmptyLayout.dismiss();
-                adapter.refresh(tempDatas);
-                datas = tempDatas;
-            }
-        }
-
-        @Override
-        public void onFailure(int errorNo, String strMsg) {
-            super.onFailure(errorNo, strMsg);
-            Log.d("====网络请求异常" + strMsg);
-            //有可能界面已经关闭网络请求仍然返回
-            if (mEmptyLayout != null && adapter != null) {
-                if (adapter.getItemCount() > 1) {
-                    mEmptyLayout.dismiss();
-                } else {
-                    mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
-                }
-            }
-        }
-
-        @Override
-        public void onFinish() {
-            super.onFinish();
-            setSwipeRefreshLoadedState();
-        }
-    };
+    protected PullRefreshCallback callBack = new PullRefreshCallback();
 
     @Override
     public int inflateLayout() {
@@ -152,6 +110,10 @@ public abstract class BasePullListFragment<T> extends BaseFragment implements
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),
                 LinearLayoutManager.VERTICAL, false));
+//        Divider divider = new Divider(new ColorDrawable(
+//                getResources().getColor(R.color.color_main_gray)), RecyclerView.VERTICAL);
+//        divider.setHeight(DensityUtils.dip2px(2f));
+//        mRecyclerView.addItemDecoration(divider);
     }
 
     public void setSwipeRefreshLoadingState() {
@@ -175,6 +137,56 @@ public abstract class BasePullListFragment<T> extends BaseFragment implements
     }
 
     public void onBottom() {
-        adapter.setState(BasePullUpRecyclerAdapter.STATE_NO_MORE);
+        adapter.setState(STATE_LOADING);
+    }
+
+    public class PullRefreshCallback extends HttpCallback {
+        private List<T> tempDatas;
+
+        @Override
+        public void onSuccessInAsync(byte[] t) {
+            super.onSuccessInAsync(t);
+            try {
+                tempDatas = parserInAsync(t);
+            } catch (Exception e) {
+                tempDatas = null;
+            }
+        }
+
+        @Override
+        public void onSuccess(String t) {
+            super.onSuccess(t);
+            Log.d("===列表网络请求:" + t);
+            if (tempDatas == null || tempDatas.isEmpty() || adapter == null
+                    || adapter.getItemCount() < 1) {
+                mEmptyLayout.setErrorType(EmptyLayout.NODATA);
+                adapter.setState(STATE_INVISIBLE);
+            } else {
+                mEmptyLayout.dismiss();
+                adapter.refresh(tempDatas);
+                datas = tempDatas;
+            }
+        }
+
+        @Override
+        public void onFailure(int errorNo, String strMsg) {
+            super.onFailure(errorNo, strMsg);
+            Log.d("====网络请求异常" + strMsg);
+            //有可能界面已经关闭网络请求仍然返回
+            if (mEmptyLayout != null && adapter != null) {
+                if (adapter.getItemCount() > 1) {
+                    mEmptyLayout.dismiss();
+                } else {
+                    mEmptyLayout.setErrorType(EmptyLayout.NETWORK_ERROR);
+                }
+                adapter.setState(STATE_NO_MORE);
+            }
+        }
+
+        @Override
+        public void onFinish() {
+            super.onFinish();
+            setSwipeRefreshLoadedState();
+        }
     }
 }

@@ -60,7 +60,7 @@ public class SplashActivity extends BaseActivity {
         showSplash();
         splashSkip.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.skip_text));
 
-        ThreadSwitch.singleton().io(new ThreadSwitch.IO() {
+        ThreadSwitch.get(8).io(new ThreadSwitch.IO() {
             @Override
             public void run() {
                 try {
