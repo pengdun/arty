@@ -49,7 +49,7 @@ dependencies {
     //自己的库
     compile 'com.kymjs.core:common:1.0.7'
     compile 'com.kymjs.core:crash:1.0.1'
-    compile 'com.kymjs.core:recycler:1.0.2'
+    compile 'com.kymjs.core:recycler:1.0.3'
     compile 'com.kymjs.core:empty-view:1.0.2'
     compile 'com.kymjs.rxvolley:rxvolley:1.1.4'
     compile 'com.kymjs.rxvolley:bitmapcore:1.1.4'

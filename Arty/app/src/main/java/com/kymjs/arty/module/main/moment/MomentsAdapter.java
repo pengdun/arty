@@ -1,10 +1,12 @@
 package com.kymjs.arty.module.main.moment;
 
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 
 import com.kymjs.arty.R;
-import com.kymjs.arty.module.base.BasePullMultiTypeRecyclerAdapter;
+import com.kymjs.arty.utils.DateUtils;
 import com.kymjs.core.bitmap.client.BitmapCore;
+import com.kymjs.recycler.adapter.BasePullMultiTypeRecyclerAdapter;
 import com.kymjs.recycler.adapter.RecyclerHolder;
 
 import java.util.Collection;
@@ -51,6 +53,16 @@ public class MomentsAdapter extends BasePullMultiTypeRecyclerAdapter<Moment> {
 
     private void inflaterCommon(RecyclerHolder holder, Moment item) {
         CircleImageView avatar = holder.getView(R.id.moment_item_avatar);
-        new BitmapCore.Builder().view(avatar).url(item.getCreatedPortrait()).doTask();
+        Bitmap bitmap = BitmapCore.getMemoryBitmap(item.getCreatedPortrait());
+        if (bitmap != null) {
+            avatar.setImageBitmap(bitmap);
+        } else {
+            new BitmapCore.Builder().view(avatar).loadResId(R.mipmap.ic_launcher)
+                    .url(item.getCreatedPortrait()).doTask();
+        }
+        holder.setText(R.id.moment_item_name, item.getCreatedNickname());
+
+        holder.setText(R.id.moment_item_date, DateUtils.friendlyTime(item.getCreatedTime()));
+
     }
 }

@@ -27,8 +27,7 @@
             android:layout_alignBottom="@+id/moment_item_avatar"
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/moment_item_avatar"
-            android:gravity="center"
-            android:text="TextView"/>
+            android:gravity="center"/>
 
         <TextView
             android:id="@+id/moment_item_name"
@@ -36,10 +35,10 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/moment_item_avatar"
             android:layout_alignTop="@+id/moment_item_avatar"
+            android:layout_toEndOf="@+id/moment_item_avatar"
             android:layout_toLeftOf="@+id/moment_item_date"
             android:layout_toRightOf="@+id/moment_item_avatar"
-            android:gravity="center"
-            android:text="TextView"/>
+            android:gravity="center"/>
 
     </RelativeLayout>
 
