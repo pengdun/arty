@@ -17,8 +17,8 @@ public class Moment {
     private int praise;
     private int view;
     private int comment;
-    private Object img;
-    private Object audio;
+    private String img;
+    private String audio;
     @SerializedName("created_user_id")
     private String createdUserId;
     @SerializedName("created_time")
@@ -100,19 +100,19 @@ public class Moment {
         this.comment = comment;
     }
 
-    public Object getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(Object img) {
+    public void setImg(String img) {
         this.img = img;
     }
 
-    public Object getAudio() {
+    public String getAudio() {
         return audio;
     }
 
-    public void setAudio(Object audio) {
+    public void setAudio(String audio) {
         this.audio = audio;
     }
 

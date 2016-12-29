@@ -23,6 +23,7 @@ public class Api {
     public static final String SPLASH = "/splash";
     public static final String RECOMMEND = "/recommend";
     public static final String MOMENTS = "/moment";
+    public static final String UPGRADE = "/upgrade";
 
     static {
         RxVolley.setRequestQueue(

@@ -9,9 +9,10 @@ import com.kymjs.rxvolley.client.HttpParams;
 import java.util.List;
 
 /**
+ * 动态
+ * <p>
  * Created by ZhangTao on 12/26/16.
  */
-
 public class MomentsFragment extends BasePullListFragment<Moment> {
     private static final int PAGE_SIZE = 20;
 

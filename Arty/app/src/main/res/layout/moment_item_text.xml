@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_main_window"
+        android:padding="8dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/moment_item_avatar"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:contentDescription="@null"/>
+
+        <TextView
+            android:id="@+id/moment_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_alignBaseline="@id/moment_item_avatar"
+            android:layout_alignTop="@id/moment_item_avatar"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/moment_item_avatar"
+            android:layout_toRightOf="@id/moment_item_avatar"
+            android:gravity="center_vertical|start"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/color_main_text1"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/moment_item_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moment_item_name"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/moment_item_avatar"
+            android:layout_toRightOf="@id/moment_item_avatar"
+            android:textColor="@color/color_main_text2"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/moment_item_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/moment_item_content"
+            android:layout_toEndOf="@id/moment_item_avatar"
+            android:layout_toRightOf="@id/moment_item_avatar"
+            android:gravity="center"
+            android:textColor="@color/color_contrast"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/moment_item_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/moment_item_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:textColor="@color/color_main_text4"
+            android:textSize="12sp"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

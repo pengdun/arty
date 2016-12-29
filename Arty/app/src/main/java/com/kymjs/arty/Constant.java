@@ -10,4 +10,6 @@ public class Constant {
 
     public static final String FONTS_TRADITIONAL = "jianshi.otf";
     public static final String FONTS_SIMPLE = "font_hwzs.ttf";
+    
+    public static final String SQL_FINDPOEM = "select * from poem";
 }

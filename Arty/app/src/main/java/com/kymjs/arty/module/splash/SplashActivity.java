@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.reflect.TypeToken;
-import com.kymjs.arty.module.base.BaseActivity;
+import com.kymjs.arty.Constant;
 import com.kymjs.arty.R;
 import com.kymjs.arty.api.Api;
 import com.kymjs.arty.db.SQLdm;
+import com.kymjs.arty.module.base.BaseActivity;
 import com.kymjs.arty.module.main.MainActivity;
-import com.kymjs.arty.Constant;
 import com.kymjs.arty.utils.GsonArrayCallback;
+import com.kymjs.arty.utils.ThreadSwitch;
 import com.kymjs.common.Log;
-import com.kymjs.common.function.ThreadSwitch;
 import com.kymjs.core.bitmap.client.BitmapCore;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
@@ -68,6 +68,7 @@ public class SplashActivity extends BaseActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                SQLdm.initLocalPoemMap();
             }
         });
     }
