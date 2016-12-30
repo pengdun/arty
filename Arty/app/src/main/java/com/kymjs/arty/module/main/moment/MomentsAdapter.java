@@ -3,9 +3,6 @@ package com.kymjs.arty.module.main.moment;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.kymjs.arty.R;
@@ -50,18 +47,6 @@ public class MomentsAdapter extends BasePullMultiTypeRecyclerAdapter<Moment> {
                 return 0;
         }
     }
-
-    @Override
-    public RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == TYPE_FOOTER) {
-            return super.onCreateViewHolder(parent, viewType);
-        } else {
-            LayoutInflater inflater = LayoutInflater.from(cxt);
-            View root = inflater.inflate(getItemIdByType(viewType), parent, false);
-            return new RecyclerHolder(root);
-        }
-    }
-
 
     @Override
     public void convert(RecyclerHolder holder, Moment item, int position, int viewType) {

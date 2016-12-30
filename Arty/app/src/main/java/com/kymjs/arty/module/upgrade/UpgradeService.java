@@ -8,9 +8,9 @@ import android.support.annotation.Nullable;
 
 import com.kymjs.arty.api.Api;
 import com.kymjs.arty.utils.GsonHttpCallback;
-import com.kymjs.arty.utils.ThreadSwitch;
 import com.kymjs.common.App;
 import com.kymjs.common.SystemTool;
+import com.kymjs.common.function.ThreadSwitch;
 import com.kymjs.rxvolley.RxVolley;
 
 /**
