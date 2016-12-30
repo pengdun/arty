@@ -3,12 +3,15 @@ package com.kymjs.arty.module.main;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
-import com.kymjs.arty.module.base.BaseActivity;
 import com.kymjs.arty.R;
+import com.kymjs.arty.module.base.BaseActivity;
 import com.kymjs.arty.module.main.moment.MomentsFragment;
 import com.kymjs.arty.module.main.recommend.RecommendFragment;
 import com.kymjs.arty.utils.TypefaceUtils;
@@ -35,6 +38,10 @@ public class MainActivity extends BaseActivity {
     ViewPager mViewPager;
     @BindView(R.id.main_fabButton)
     FloatingActionButton mFAButton;
+    @BindView(R.id.nav_view)
+    NavigationView mNavigationView;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
 
     @BindString(R.string.app_name)
     String mTitle;
@@ -52,6 +59,17 @@ public class MainActivity extends BaseActivity {
     private void initToolbar() {
         setSupportActionBar(mToolbar);
         mToolbar.setTitleTextColor(mColor);
+        mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    mDrawerLayout.openDrawer(mNavigationView);
+                }
+            }
+        });
         try {
             Field field = Toolbar.class.getDeclaredField("mTitleTextView");
             field.setAccessible(true);
