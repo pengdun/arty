@@ -13,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kymjs.arty.Constant;
 import com.kymjs.arty.R;
 import com.kymjs.arty.api.Api;
+import com.kymjs.arty.api.BI;
 import com.kymjs.arty.db.SQLdm;
 import com.kymjs.arty.module.base.BaseActivity;
 import com.kymjs.arty.module.main.MainActivity;
@@ -59,7 +60,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
         showSplash();
         splashSkip.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.skip_text));
-
+        BI.postEvent("splash");
         ThreadSwitch.get(8).io(new ThreadSwitch.IO() {
             @Override
             public void run() {

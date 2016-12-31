@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
 
 /**
  * Created by ZhangTao on 12/23/16.
+ * 
  */
 
 public class Api {
@@ -24,6 +25,9 @@ public class Api {
     public static final String RECOMMEND = "/recommend";
     public static final String MOMENTS = "/moment";
     public static final String UPGRADE = "/upgrade";
+    public static final String REGISTER = "/register";
+    public static final String LOGIN = "/login";
+    public static final String BI = "/bi";
 
     static {
         RxVolley.setRequestQueue(

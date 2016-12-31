@@ -8,12 +8,13 @@ import android.widget.ImageView;
 import com.kymjs.arty.R;
 import com.kymjs.arty.db.LocalPoem;
 import com.kymjs.arty.db.SQLdm;
-import com.kymjs.arty.utils.DateUtils;
+import com.kymjs.common.DateUtils;
 import com.kymjs.core.bitmap.client.BitmapCore;
 import com.kymjs.recycler.adapter.BasePullMultiTypeRecyclerAdapter;
 import com.kymjs.recycler.adapter.RecyclerHolder;
 
 import java.util.Collection;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -78,7 +79,7 @@ public class MomentsAdapter extends BasePullMultiTypeRecyclerAdapter<Moment> {
         }
         holder.setText(R.id.moment_item_name, item.getCreatedNickname());
         holder.setText(R.id.moment_item_content, item.getContent());
-        holder.setText(R.id.moment_item_date, DateUtils.friendlyTime(item.getCreatedTime()));
+        holder.setText(R.id.moment_item_date, DateUtils.getFriendlyTime(new Date(item.getCreatedTime())));
 
         LocalPoem localPoem = SQLdm.sLocalPoemMap.get(item.getPoemId() + "");
         String poemName = "";
@@ -119,6 +120,6 @@ public class MomentsAdapter extends BasePullMultiTypeRecyclerAdapter<Moment> {
 
         holder.setText(R.id.moment_item_name, item.getCreatedNickname());
         holder.setText(R.id.moment_item_content, item.getContent());
-        holder.setText(R.id.moment_item_date, DateUtils.friendlyTime(item.getCreatedTime()));
+        holder.setText(R.id.moment_item_date, DateUtils.getFriendlyTime(new Date(item.getCreatedTime())));
     }
 }
