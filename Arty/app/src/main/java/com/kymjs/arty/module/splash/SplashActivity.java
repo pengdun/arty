@@ -61,7 +61,8 @@ public class SplashActivity extends BaseActivity {
         showSplash();
         splashSkip.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.skip_text));
         BI.postEvent("splash");
-        ThreadSwitch.get(8).io(new ThreadSwitch.IO() {
+        final ThreadSwitch threadSwitch = ThreadSwitch.get();
+        threadSwitch.io(new ThreadSwitch.IO() {
             @Override
             public void run() {
                 try {
@@ -70,6 +71,7 @@ public class SplashActivity extends BaseActivity {
                     e.printStackTrace();
                 }
                 SQLdm.initLocalPoemMap();
+                threadSwitch.breakTask();
             }
         });
     }

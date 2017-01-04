@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.kymjs.arty.Constant;
+import com.kymjs.arty.bean.LocalPoem;
 import com.kymjs.common.App;
 import com.kymjs.common.FileUtils;
 

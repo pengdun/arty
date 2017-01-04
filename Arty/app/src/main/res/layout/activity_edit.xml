@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/layout_root"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edit_title"
+        style="@style/EditTextTitleStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:maxLines="1"
+        android:textSize="28sp"/>
+
+    <ScrollView
+        android:id="@+id/edit_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edit_title"
+        android:layout_marginTop="18dp"
+        android:scrollbars="none">
+
+        <EditText
+            android:id="@+id/edit_content"
+            style="@style/EditTextContentStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:paddingBottom="40dp"
+            android:textSize="18sp"/>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/edit_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="18dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_launcher"/>
+
+</RelativeLayout>

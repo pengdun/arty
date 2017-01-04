@@ -5,4 +5,13 @@
 
     <string name="main_tab_1">Recommend</string>
     <string name="main_tab_2">Moments</string>
+
+    <string name="want_to_save">Do you want to save?</string>
+
+    <string name="yes">of course</string>
+    <string name="no">not</string>
+
+    <string name="save_success">Save success</string>
+    <string name="save_failure">Save failure</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.kymjs.arty;
 
 import android.app.Application;
 
+import com.kymjs.arty.utils.TypefaceUtils;
 import com.kymjs.common.Log;
 import com.kymjs.crash.CustomActivityOnCrash;
 import com.kymjs.rxvolley.toolbox.Loger;
@@ -17,5 +18,7 @@ public class AppContext extends Application {
         Loger.setEnable(BuildConfig.DEBUG);
         Log.setEnable(BuildConfig.DEBUG);
         CustomActivityOnCrash.install(this);
+
+        TypefaceUtils.justSimpleFont = true;
     }
 }

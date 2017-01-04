@@ -5,4 +5,32 @@
 
     <string name="main_tab_1">阅读最多</string>
     <string name="main_tab_2">吟诗作对</string>
+
+    <string name="want_to_save">是否要保存？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    
+    <string name="save_success">保存成功</string>
+    <string name="save_failure">保存失败</string>
+    
+    <string-array name="edit_content_hint_array">
+        <item>美好的一天，给自己写句鼓励吧&#8230;</item>
+        <item>给精彩的一天作个计划吧&#8230;</item>
+        <item>宁静的午后，文字相伴&#8230;</item>
+        <item>午后，来杯咖啡，写写文字&#8230;</item>
+        <item>落日余晖，是否感慨&#8230;</item>
+        <item>深夜了，心事诉于此&#8230;</item>
+        <item>亲爱的，明天见&#8230;</item>
+        <item>只为了写下此刻的心&#8230;</item>
+    </string-array>
+    <string-array name="edit_title_hint_array">
+        <item>清晨</item>
+        <item>上午</item>
+        <item>午间</item>
+        <item>午后</item>
+        <item>落日</item>
+        <item>夜深</item>
+        <item>晚安</item>
+        <item>抒情</item>
+    </string-array>
 </resources>

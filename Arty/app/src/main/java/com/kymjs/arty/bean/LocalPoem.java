@@ -1,4 +1,4 @@
-package com.kymjs.arty.db;
+package com.kymjs.arty.bean;
 
 /**
  * Created by ZhangTao on 12/29/16.

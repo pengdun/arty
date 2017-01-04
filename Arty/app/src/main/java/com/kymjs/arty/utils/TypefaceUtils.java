@@ -21,7 +21,7 @@ public class TypefaceUtils {
      * @param view 待设置的view
      */
     public static void setTypeface(TextView view) {
-        setTypeface(view, true);
+        setTypeface(view, justSimpleFont);
     }
 
     /**

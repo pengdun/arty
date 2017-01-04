@@ -6,7 +6,7 @@ import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.kymjs.arty.R;
-import com.kymjs.arty.db.LocalPoem;
+import com.kymjs.arty.bean.LocalPoem;
 import com.kymjs.arty.db.SQLdm;
 import com.kymjs.common.DateUtils;
 import com.kymjs.core.bitmap.client.BitmapCore;

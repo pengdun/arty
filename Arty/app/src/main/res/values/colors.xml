@@ -2,8 +2,8 @@
 <resources>
     <color name="colorPrimary">#efefef</color>
     <color name="colorAccent">#E29C45</color>
-    <color name="colorPrimaryDark">#555</color>
-    <color name="color_main_window">#e2e2e2</color>
+    <color name="colorPrimaryDark">#fff</color>
+    <color name="color_main_window">#F0F0F4</color>
 
     <color name="color_main_gray">#aaaaaa</color>
     <color name="color_main_text1">#333</color>

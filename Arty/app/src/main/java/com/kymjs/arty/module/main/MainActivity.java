@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.kymjs.arty.R;
 import com.kymjs.arty.module.base.BaseActivity;
+import com.kymjs.arty.module.diary.EditDiaryActivity;
 import com.kymjs.arty.module.main.moment.MomentsFragment;
 import com.kymjs.arty.module.main.recommend.RecommendFragment;
 import com.kymjs.arty.utils.TypefaceUtils;
@@ -25,6 +26,7 @@ import java.lang.reflect.Field;
 import butterknife.BindColor;
 import butterknife.BindString;
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
 
@@ -88,6 +90,7 @@ public class MainActivity extends BaseActivity {
         pagerAdapter.addFragment(new MomentsFragment(), getString(R.string.main_tab_2));
         mViewPager.setAdapter(pagerAdapter);
         mTableLayout.setupWithViewPager(mViewPager);
+        //viewpager切换监听器
 //        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            @Override
 //            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -103,6 +106,12 @@ public class MainActivity extends BaseActivity {
 //            }
 //        });
     }
+
+    @OnClick(R.id.main_fabButton)
+    void onFABClick(FloatingActionButton faButton) {
+        EditDiaryActivity.start(getActivity());
+    }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onChangeTitle(String title) {
