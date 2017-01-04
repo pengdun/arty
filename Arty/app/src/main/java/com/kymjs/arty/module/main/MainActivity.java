@@ -53,12 +53,14 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initToolbar();
+//        onChangeTitle(getString(R.string.main_tab_1));
         initViewPagerAndTabs();
     }
 
     private void initToolbar() {
         setSupportActionBar(mToolbar);
         mToolbar.setTitleTextColor(mColor);
+//        mToolbar.setSubtitleTextColor(mColor);
         mToolbar.setNavigationIcon(R.drawable.ic_drawer_home);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,16 +83,31 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initViewPagerAndTabs() {
-        MainPagerAdapter pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        final MainPagerAdapter pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
         pagerAdapter.addFragment(new RecommendFragment(), getString(R.string.main_tab_1));
         pagerAdapter.addFragment(new MomentsFragment(), getString(R.string.main_tab_2));
         mViewPager.setAdapter(pagerAdapter);
         mTableLayout.setupWithViewPager(mViewPager);
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                onChangeTitle(pagerAdapter.getPageTitle(position).toString());
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//            }
+//        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onChangeTitle(String title) {
         mTitle = title;
+//        mToolbar.setSubtitle(mTitle);
         setTitle(mTitle);
     }
 
