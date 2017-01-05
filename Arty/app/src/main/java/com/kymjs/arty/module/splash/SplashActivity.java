@@ -146,12 +146,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onSuccess(String t) {
-                SplashItem item = data.get(0);
-                for (SplashItem temp : data) {
-                    if (temp.getOrder() > item.getOrder()) {
-                        item = temp;
-                    }
-                }
+                SplashItem item = data.get((int) (Math.random() * data.size()));
                 splashText.setText(item.getDescription());
                 Log.d("======闪屏图片::" + item.getImageUrl());
                 new BitmapCore.Builder()
@@ -166,6 +161,11 @@ public class SplashActivity extends BaseActivity {
                             }
                         })
                         .doTask();
+
+                //预下载所有闪屏页
+                for (SplashItem temp : data) {
+                    new BitmapCore.Builder().url(temp.getImageUrl()).doTask();
+                }
             }
         });
     }
