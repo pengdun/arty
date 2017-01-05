@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.kymjs.arty.utils.TypefaceUtils;
 import com.kymjs.common.Log;
+import com.kymjs.common.SystemTool;
 import com.kymjs.crash.CustomActivityOnCrash;
 import com.kymjs.rxvolley.toolbox.Loger;
 

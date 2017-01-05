@@ -5,13 +5,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -22,6 +22,7 @@ import com.kymjs.arty.utils.SimpleTextWatcher;
 import com.kymjs.arty.utils.StringByTime;
 import com.kymjs.arty.utils.TypefaceUtils;
 import com.kymjs.common.App;
+import com.kymjs.common.StringUtils;
 import com.kymjs.common.function.ThreadSwitch;
 
 import java.sql.Timestamp;
@@ -31,19 +32,26 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+import static com.kymjs.common.PreferenceHelper.readString;
+import static com.kymjs.common.PreferenceHelper.remove;
+import static com.kymjs.common.PreferenceHelper.write;
+
 /**
  * Created by ZhangTao on 1/4/17.
  */
 public class EditDiaryActivity extends BaseActivity {
 
     public final static String DIARY_UUID = "diary_uuid";
+    public final static String DIARY_PREFERENCE_FILE = "edit_diary";
+    public final static String DIARY_TITLE_KEY = "edit_diary_title";
+    public final static String DIARY_CONTENT_KEY = "edit_diary_content";
 
     @BindView(R.id.edit_title)
     EditText mEtDiaryTitle;
     @BindView(R.id.edit_content)
     EditText mEtDiaryContent;
-    @BindView(R.id.edit_save)
-    ImageView mIvSave;
+    @BindView(R.id.edit_fabButton)
+    FloatingActionButton mFabSave;
     @BindView(R.id.edit_scroll_view)
     ScrollView mScrollView;
 
@@ -63,6 +71,9 @@ public class EditDiaryActivity extends BaseActivity {
         String diaryID = intent.getStringExtra(DIARY_UUID);
         if (!TextUtils.isEmpty(diaryID)) {
             setDiary(diaryID);
+        } else {
+            originTitle = readString(App.INSTANCE, DIARY_PREFERENCE_FILE, DIARY_TITLE_KEY);
+            originContent = readString(App.INSTANCE, DIARY_PREFERENCE_FILE, DIARY_CONTENT_KEY);
         }
 
         SimpleTextWatcher textWatcher = new SimpleTextWatcher() {
@@ -122,6 +133,11 @@ public class EditDiaryActivity extends BaseActivity {
         }
     }
 
+    @OnClick(R.id.edit_fabButton)
+    void onSaveClick() {
+        saveDiary();
+    }
+
     private List<Diary> mTempDiaryList = null;
 
     void setDiary(final String id) {
@@ -152,27 +168,36 @@ public class EditDiaryActivity extends BaseActivity {
         originTitle = mEtDiaryTitle.getText().toString();
         originContent = mEtDiaryContent.getText().toString();
 
-        final ThreadSwitch threadSwitch = ThreadSwitch.get();
-        threadSwitch.io(new ThreadSwitch.IO() {
-            @Override
-            public void run() {
-                Diary tempDiary = new Diary();
-                tempDiary.setTitle(originTitle);
-                tempDiary.setContent(originContent);
-                tempDiary.setCreateTime(new Timestamp(new Date().getTime()));
-                saveSuccess = mDiaryDao.save(tempDiary);
-            }
-        }).ui(new ThreadSwitch.UI() {
-            @Override
-            public void run() {
-                if (saveSuccess) {
-                    Toast.makeText(App.INSTANCE, R.string.save_success, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(App.INSTANCE, R.string.save_failure, Toast.LENGTH_SHORT).show();
+        if (!StringUtils.isEmpty(originTitle, originContent)) {
+            final ThreadSwitch threadSwitch = ThreadSwitch.get();
+            threadSwitch.io(new ThreadSwitch.IO() {
+                @Override
+                public void run() {
+                    write(App.INSTANCE, DIARY_PREFERENCE_FILE, DIARY_TITLE_KEY, originTitle);
+                    write(App.INSTANCE, DIARY_PREFERENCE_FILE, DIARY_CONTENT_KEY, originContent);
+                    Diary tempDiary = new Diary();
+                    tempDiary.setTitle(originTitle);
+                    tempDiary.setContent(originContent);
+                    tempDiary.setCreateTime(new Timestamp(new Date().getTime()));
+                    saveSuccess = mDiaryDao.save(tempDiary);
+                    if (saveSuccess) {
+                        remove(App.INSTANCE, DIARY_PREFERENCE_FILE, DIARY_TITLE_KEY);
+                        remove(App.INSTANCE, DIARY_PREFERENCE_FILE, DIARY_CONTENT_KEY);
+                    }
                 }
-                threadSwitch.breakTask();
-            }
-        });
+            }).ui(new ThreadSwitch.UI() {
+                @Override
+                public void run() {
+                    if (saveSuccess) {
+                        Toast.makeText(App.INSTANCE, R.string.save_success, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(App.INSTANCE, R.string.save_failure, Toast.LENGTH_SHORT).show();
+                    }
+                    threadSwitch.breakTask();
+                }
+            });
+        }
+        finish();
     }
 
     public static void start(Context context) {

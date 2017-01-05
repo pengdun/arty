@@ -1,7 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/layout_root"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true">
 
     <EditText
         android:id="@+id/edit_title"
@@ -9,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:inputType="text"
         android:maxLines="1"
+        android:padding="1dp"
         android:textSize="28sp"/>
 
     <ScrollView
@@ -26,18 +30,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top"
+            android:inputType="text"
             android:paddingBottom="40dp"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
             android:textSize="18sp"/>
     </ScrollView>
 
-    <ImageView
-        android:id="@+id/edit_save"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/edit_fabButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="18dp"
-        android:contentDescription="@null"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_menu_save"
+        app:borderWidth="0dp"
+        app:layout_behavior="com.kymjs.arty.view.ScrollingFABBehavior"/>
 
 </RelativeLayout>
