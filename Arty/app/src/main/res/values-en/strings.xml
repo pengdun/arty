@@ -2,6 +2,7 @@
     <string name="app_name">Literature Arty</string>
     <string name="title_activity_login">Sign in</string>
     <string name="skip">skip</string>
+    <string name="setting">Setting</string>
 
     <string name="main_tab_1">Recommend</string>
     <string name="main_tab_2">Moments</string>
@@ -13,5 +14,11 @@
 
     <string name="save_success">Save success</string>
     <string name="save_failure">Save failure</string>
+
+    <string name="home">Home</string>
+    <string name="my_poem">My poem</string>
+    <string name="share">Share</string>
+    <string name="function">Function</string>
+    <string name="collection">Collection</string>
 
 </resources>

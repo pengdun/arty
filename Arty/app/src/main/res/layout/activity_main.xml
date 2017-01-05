@@ -21,6 +21,7 @@
         android:layout_gravity="start"
         android:background="@mipmap/main_slide_bg"
         app:headerLayout="@layout/nav_header_main"
+        app:itemTextColor="@drawable/selector_menu_text_bg"
         app:menu="@menu/activity_main_drawer"/>
 
 </android.support.v4.widget.DrawerLayout>

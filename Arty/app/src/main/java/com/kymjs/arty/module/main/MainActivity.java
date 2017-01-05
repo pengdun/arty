@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -28,7 +30,8 @@ import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.main_toolbar)
     Toolbar mToolbar;
@@ -57,6 +60,7 @@ public class MainActivity extends BaseActivity {
         initToolbar();
 //        onChangeTitle(getString(R.string.main_tab_1));
         initViewPagerAndTabs();
+        mNavigationView.setNavigationItemSelectedListener(this);
     }
 
     private void initToolbar() {
@@ -67,10 +71,10 @@ public class MainActivity extends BaseActivity {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mDrawerLayout.isDrawerOpen(mNavigationView)) {
-                    mDrawerLayout.closeDrawers();
+                if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    mDrawerLayout.closeDrawer(GravityCompat.START);
                 } else {
-                    mDrawerLayout.openDrawer(mNavigationView);
+                    mDrawerLayout.openDrawer(GravityCompat.START);
                 }
             }
         });
@@ -130,5 +134,34 @@ public class MainActivity extends BaseActivity {
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                break;
+            case R.id.nav_poem:
+                break;
+            case R.id.nav_collection:
+                break;
+            case R.id.nav_share:
+                break;
+            case R.id.nav_setting:
+                break;
+        }
+
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
