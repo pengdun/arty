@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
+import com.kymjs.arty.R;
 import com.kymjs.arty.api.Api;
 import com.kymjs.arty.bean.UpGradeMessage;
 import com.kymjs.arty.utils.GsonHttpCallback;
@@ -13,6 +15,10 @@ import com.kymjs.common.App;
 import com.kymjs.common.SystemTool;
 import com.kymjs.common.function.ThreadSwitch;
 import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpCallback;
+import com.kymjs.rxvolley.client.ProgressListener;
+import com.kymjs.rxvolley.http.VolleyError;
+import com.kymjs.rxvolley.toolbox.FileUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -64,19 +70,34 @@ public class UpgradeService extends Service {
     }
 
     /**
-     * 版本比对
+     * 版本比对,下载
      *
      * @param data
      */
-    private void checkRemoteVersion(Upgrade.DataBean data) {
+    private void checkRemoteVersion(final Upgrade.DataBean data) {
         int remoteVersionCode = 0;
         try {
             remoteVersionCode = Integer.parseInt(data.getVersionCode());
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-        if (remoteVersionCode < SystemTool.getAppVersionCode(this)) ;
-        EventBus.getDefault().post(new UpGradeMessage(data));
+        if (remoteVersionCode < SystemTool.getAppVersionCode(this) && SystemTool.isWiFi(this)) {
+            if (FileUtils.getExternalCacheDir(getString(R.string.down_app_name)).exists() && FileUtils.getExternalCacheDir(getString(R.string.down_app_name)).isFile()) {
+                FileUtils.getExternalCacheDir(getString(R.string.down_app_name)).delete();
+            }
+            RxVolley.download(FileUtils.getExternalCacheDir(getString(R.string.down_app_name)).getAbsolutePath(), data.getUrl(), new ProgressListener() {
+                @Override
+                public void onProgress(long transferredBytes, long totalSize) {
+                    Log.d("tag", transferredBytes + "");
+                }
+            }, new HttpCallback() {
+                @Override
+                public void onSuccess(String t) {
+                    EventBus.getDefault().post(new UpGradeMessage("up"));
+                    Log.e("tag", "下载完成");
+                }
+            });
+        }
     }
 
     @Override

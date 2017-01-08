@@ -12,15 +12,9 @@ import java.io.Serializable;
  */
 public class UpGradeMessage implements Serializable {
 
-    private static final long serialVersionUID = 1953131542446823384L;
+    private String msg = "msg";
 
-    private Upgrade.DataBean mDataBean;
-
-    public UpGradeMessage(Upgrade.DataBean upgrade) {
-        mDataBean = upgrade;
-    }
-
-    public Upgrade.DataBean getDataBean() {
-        return mDataBean;
+    public UpGradeMessage(String msg) {
+        this.msg = msg;
     }
 }

@@ -12,6 +12,7 @@
     <string name="yes">是</string>
     <string name="no">否</string>
 
+    <string name="down_app_name">WENYI.apk</string>
     <string name="save_success">保存成功</string>
     <string name="save_failure">保存失败</string>
 
@@ -20,6 +21,10 @@
     <string name="collection">我的收藏</string>
     <string name="function">更多功能</string>
 
+    <string name="upgrad_dialog_title">温馨提示</string>
+    <string name="upgrad_dialog_content">以为您准备好更新包，是否免流量更新?</string>
+    <string name="upgrad_dialog_btn_left">稍后提醒</string>
+    <string name="upgrad_dialog_btn_right">立刻更新</string>
     <string-array name="edit_content_hint_array">
         <item>美好的一天，给自己写句鼓励吧&#8230;</item>
         <item>给精彩的一天作个计划吧&#8230;</item>

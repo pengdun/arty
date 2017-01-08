@@ -9,6 +9,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -22,6 +23,11 @@ import com.kymjs.arty.module.main.recommend.RecommendFragment;
 import com.kymjs.arty.module.upgrade.UpgradeService;
 import com.kymjs.arty.utils.TypefaceUtils;
 import com.kymjs.arty.view.AlertButtonDialog;
+import com.kymjs.common.SystemTool;
+import com.kymjs.rxvolley.RxVolley;
+import com.kymjs.rxvolley.client.HttpCallback;
+import com.kymjs.rxvolley.client.ProgressListener;
+import com.kymjs.rxvolley.toolbox.FileUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -172,17 +178,13 @@ public class MainActivity extends BaseActivity
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void UpGradeMessage(UpGradeMessage upGradeMessage) {
-        if (upGradeMessage == null) {
-            return;
-        }
-
         AlertButtonDialog alertButtonDialog = new AlertButtonDialog(this, AlertButtonDialog.PromptIconEnumType.PROMPT,
-                "温馨提示", upGradeMessage.getDataBean().getContent(), AlertButtonDialog.ButtonEnum.TWO,
-                "稍后提醒", "立刻更新",
+                getString(R.string.upgrad_dialog_title), getString(R.string.upgrad_dialog_content), AlertButtonDialog.ButtonEnum.TWO,
+                getString(R.string.upgrad_dialog_btn_left), getString(R.string.upgrad_dialog_btn_right),
                 new AlertButtonDialog.DialogOnClickListener() {
                     @Override
                     public void onRigth() {
-
+                        SystemTool.installApk(MainActivity.this, FileUtils.getExternalCacheDir(getString(R.string.down_app_name)));
                     }
 
                     @Override
