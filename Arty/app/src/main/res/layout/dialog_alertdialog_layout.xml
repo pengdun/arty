@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/Dialog_Layout_Bg">
+
+    <TextView
+        android:id="@+id/dialog_title_tv"
+        style="@style/Dialog_Layout_Title"
+        android:layout_marginLeft="-18dp"
+        android:drawablePadding="@dimen/dm_10"
+        android:gravity="left|center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/dm_80"
+        android:padding="@dimen/dm_10">
+
+        <ProgressBar
+            android:id="@+id/download_pb"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/progress_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/download_pb"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/blue_139dc9"
+            android:textSize="@dimen/text_siez_14"/>
+
+        <TextView
+            android:id="@+id/dialog_content_tv"
+            style="@style/Dialog_Layout_Content"
+            android:text="@string/dialog_prompt"/>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/dividing_dialog_line_layout"/>
+
+    <TextView
+        android:textSize="@dimen/text_siez_16"
+        android:paddingBottom="@dimen/dm_10"
+        android:paddingTop="@dimen/dm_10"
+        android:visibility="gone"
+        android:id="@+id/updata_status_tv"
+        android:textColor="@color/blue_139dc9"
+        android:text="正在更新"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/dialog_left_btn"
+            style="@style/Dialog_Layout_Left"
+            android:text="@string/dialog_cancel"/>
+
+        <include
+            android:id="@+id/dialog_diving_vertical_view"
+            layout="@layout/dividing_dialog_line_vertical_layout"/>
+
+        <Button
+            android:id="@+id/dialog_right_btn"
+            style="@style/Dialog_Layout_Right"
+            android:text="@string/dialog_confirm"/>
+    </LinearLayout>
+
+</LinearLayout>

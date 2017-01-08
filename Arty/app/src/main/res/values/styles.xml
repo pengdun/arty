@@ -24,4 +24,58 @@
         <item name="android:lineSpacingMultiplier">1.5</item>
     </style>
 
+    <style name="Dialog_AlertDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <!--dialog的背景样式-->
+    <style name="Dialog_Layout_Bg">
+        <item name="android:layout_width">@dimen/dm_280</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/dialog_base_bg_shape</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+    <!--dialog标题-->
+    <style name="Dialog_Layout_Title">
+        <item name="android:layout_marginTop">@dimen/dm_15</item>
+        <item name="android:drawablePadding">@dimen/dm_20</item>
+        <item name="android:gravity">center</item>
+        <item name="android:drawableLeft">@mipmap/ic_base_dialog_prompt</item>
+        <item name="android:textSize">@dimen/text_siez_17</item>
+        <item name="android:text">@string/dialog_prompt</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray_cccccc</item>
+    </style>
+    <!--dialog正文-->
+    <style name="Dialog_Layout_Content">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">@dimen/text_siez_15</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray_999999</item>
+    </style>
+    <!--dialog左边按钮-->
+    <style name="Dialog_Layout_Left">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/dm_44</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/gray_999999</item>
+        <item name="android:textSize">@dimen/dm_17</item>
+    </style>
+    <!--dialog右边按钮-->
+    <style name="Dialog_Layout_Right" parent="Dialog_Layout_Left">
+        <item name="android:textColor">@color/blue_139dc9</item>
+    </style>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.kymjs.arty.module.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -13,11 +14,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.kymjs.arty.R;
+import com.kymjs.arty.bean.UpGradeMessage;
 import com.kymjs.arty.module.base.BaseActivity;
 import com.kymjs.arty.module.diary.EditDiaryActivity;
 import com.kymjs.arty.module.main.moment.MomentsFragment;
 import com.kymjs.arty.module.main.recommend.RecommendFragment;
+import com.kymjs.arty.module.upgrade.UpgradeService;
 import com.kymjs.arty.utils.TypefaceUtils;
+import com.kymjs.arty.view.AlertButtonDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -61,6 +65,7 @@ public class MainActivity extends BaseActivity
 //        onChangeTitle(getString(R.string.main_tab_1));
         initViewPagerAndTabs();
         mNavigationView.setNavigationItemSelectedListener(this);
+        startService(new Intent(this, UpgradeService.class));
     }
 
     private void initToolbar() {
@@ -163,5 +168,36 @@ public class MainActivity extends BaseActivity
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void UpGradeMessage(UpGradeMessage upGradeMessage) {
+        if (upGradeMessage == null) {
+            return;
+        }
+
+        AlertButtonDialog alertButtonDialog = new AlertButtonDialog(this, AlertButtonDialog.PromptIconEnumType.PROMPT,
+                "温馨提示", upGradeMessage.getDataBean().getContent(), AlertButtonDialog.ButtonEnum.TWO,
+                "稍后提醒", "立刻更新",
+                new AlertButtonDialog.DialogOnClickListener() {
+                    @Override
+                    public void onRigth() {
+
+                    }
+
+                    @Override
+                    public void onLeft() {
+
+                    }
+                });
+        alertButtonDialog.setCancelable(false);
+        alertButtonDialog.setCanceledOnTouchOutside(false);
+        alertButtonDialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(new Intent(this, UpgradeService.class));
     }
 }

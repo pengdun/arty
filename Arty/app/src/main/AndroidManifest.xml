@@ -40,6 +40,8 @@
         <meta-data
             android:name="appmanager"
             android:value="com.hujiang.appmanager"/>
+
+        <service android:name=".module.upgrade.UpgradeService"/>
     </application>
 
 </manifest>
